@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-3">This the answer you were asking for!</h1>
+    <p class="lead">Answer {{answer.id }}: {{ answer.answer | raw }}
+    <hr class="my-4">
+    <p><div class="metadata">Ecrit by <a href="/user/{{ answer.user.id }}">{{answer.user.alias}}</a> le {{ answer.createdAt | date('d/M/Y') }} à {{ answer.createdAt | date('H:i') }}</div>
+    <p class="lead">
+      <a href="{{ path('delete_answer', {a_id: answer.id}) }}" class="btn btn-success">Delete</a>
+      <a href="/answer/{{answer.id}}/edit" class="btn btn-primary">Modifier la question</a>
+    </p>
+</div>
+<div class="jumbotron">
+{% if app.user %}
+<h1><lead>Commentez cette réponse!</lead></h1>
+
+{% else %}
+Vous n'êtes pas connecté vous ne pouvez pas répondre à cette question!
+{% endif %}
+</div>
+<!--
+<div class="card border-primary mb-3">
+  <div class="card-header">Question: </div>
+  <div class="card-body">
+    <h4 class="card-title">Answer :</h4>
+    <p class="footer"><div class="metadata">Ecrit le  à </div></p>
+    <p class="card-text"></p>
+    <a href="" class="btn btn-primary">Show this answer</a>
+  </div>
+</div>
+-->
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+<div class="jumbotron">
+{% if app.user %}
+<h1><lead>Répondez à cette question!</lead></h1>
+    {{form_start(form) }}
+    {{ form_row(form.answer, {'attr' : {'placeholder' : "Your answer!"}}) }}
+        <button type="submit" class="btn btn-success">
+        Submit!
+        </button>
+    {{form_end(form)}}
+
+{% else %}
+Vous n'êtes pas connecté vous ne pouvez pas répondre à cette question!
+{% endif %}
+</div>
+{% endblock %}

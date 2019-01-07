@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron">
+    <h1 class="display-3">You have succesfully deleted the question! </h1>
+    <p><div class="metadata">Ecrit by <a href="/user/{{ question.user.id }}">{{question.user.alias}}</a> le {{ question.createdAt | date('d/M/Y') }} à {{ question.createdAt | date('H:i') }}</div>
+    <p class="lead">
+        <a href="{{ path('home_user', {id: app.user.id}) }}" class="btn btn-primary">Return to home page</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+<h1>Welcome to INFOrum!</h1>
+   
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam impedit molestias eius distinctio id ullam nam? Voluptate dolorem ipsam iusto, velit qui id! Ipsum perspiciatis minus consequatur neque, obcaecati deserunt ratione! Quam molestiae eveniet similique obcaecati. Et totam at harum.</p>
+    <p>Deleniti atque corporis fugiat, harum, pariatur minima exercitationem doloribus necessitatibus voluptatibus assumenda unde! Enim placeat quae ipsum velit qui. Sed vitae molestias blanditiis error debitis omnis porro doloremque facere est natus nihil corrupti mollitia sequi rerum, ut qui, aut iure.</p>
+    <a href="{{ path('security_login') }}" class="btn btn-success">Login</a>
+    <a href="{{ path('security_registration') }}" class="btn btn-success">Sign up!</a>
+
+    <div class="container">
+        <h1>This is a list of frequently asked questions:</h1>
+            {% if questions %}
+                <ul class="list-group">
+                {% for question in questions %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/question/{{question.id}}/show">{{ question.title }}: {{ question.content }}</a>
+                        <span class="badge badge-primary badge-pill">{{question.answers.count}}</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No questions are available.</p>
+            {% endif %} 
+    </div>
+{% endblock %}
+

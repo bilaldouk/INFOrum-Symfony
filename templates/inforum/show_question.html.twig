@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-3">This the question you were asking for!</h1>
+    <p class="lead">{{ question.title | raw }}
+    <hr class="my-4">
+    <p>content of the question: {{question.content}}</p>
+    {% if app.user %}
+    <p><div class="metadata">Ecrit by {{question.user.alias}}</a> le {{ question.createdAt | date('d/M/Y') }} à {{ question.createdAt | date('H:i') }} dans la catégorie {{ question.category }}</div>
+    <p class="lead">
+        <a href="/question/{{question.id}}/edit" class="btn btn-primary">Modify question</a>
+        <a href="/question/{{question.id}}/delete" class="btn btn-success">Delete</a>
+    </p>
+    {% endif %}
+</div>
+ <div class="container">
+        <h1>Answers:</h1>
+            {% if answers %}
+                <ul class="list-group">
+                {% for answer in answers %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/question/{{question.id}}/answer/{{answer.id}}/show">{{ answer.id }}: {{ answer.answer }}</a>
+                        <span class="badge badge-primary badge-pill">0</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No answers are available.</p>
+            {% endif %} 
+</div>
+<div class="jumbotron">
+{% if app.user %}
+<h1><lead>Répondez à cette question!</lead></h1>
+    {{form_start(form) }}
+    {{ form_row(form.answer, {'attr' : {'placeholder' : "Your answer!"}}) }}
+        <button type="submit" class="btn btn-success">
+        Submit!
+        </button>
+    {{form_end(form)}}
+
+{% else %}
+Vous n'êtes pas connecté vous ne pouvez pas répondre à cette question!
+{% endif %}
+</div>
+
+{% endblock %}

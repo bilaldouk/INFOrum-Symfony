@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+<h1>Bienvenue sur Inforum, {{ app.user.alias | raw }}!</h1>
+ <a href="/user/{{app.user.id}}/">Show questions</a>
+    <h1>Your answers:</h1>
+            {% if answers %}
+                <ul class="list-group">
+                {% for answer in answers %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/question/{{answer.question.id}}/answer/{{answer.id}}/show">{{ answer.id }}: {{ answer.answer }}</a>
+                        <span class="badge badge-primary badge-pill">28</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>You didn't answer any questions yet.</p>
+            {% endif %} 
+    </div>
+{% endblock %}

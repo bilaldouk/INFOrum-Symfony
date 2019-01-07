@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <h1>Poser une question!</h1>
+    
+    {{form_start(form) }}
+        {{ form_row(form.title, {'attr' : {'placeholder' : "Titre de la question"}}) }}
+        {{ form_row(form.category, {'attr' : {'placeholder' : "Catégorie de la question"}}) }}
+        {{ form_row(form.content, {'attr' : {'placeholder' : "Contenu de la question"}}) }}
+        <button type="submit" class="btn btn-success">
+                Update
+        </button>
+        
+    {{ form_end(form) }}
+{% endblock %}
